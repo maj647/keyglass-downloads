@@ -25,5 +25,5 @@ in its window. Download the new `.dmg` and drag it into Applications again.
 
 ## Beta
 
-This is a private beta. By installing it you agree to the Beta Test Agreement
+This is an early release (1.0). By installing it you agree to the Beta Test Agreement
 you received with the link. Please don't share the installer.
