@@ -1,6 +1,6 @@
 # Keyglass downloads
 
-Keyglass finds the key, BPM and tuning of any beat on your Mac, fully offline.
+Keyglass finds the key, BPM and tuning of any beat on your Mac. **It works 100% offline:** your audio never leaves your Mac, and every feature works without internet.
 This page only hosts the installers and update info.
 
 ## Download
@@ -25,5 +25,5 @@ in its window. Download the new `.dmg` and drag it into Applications again.
 
 ## Beta
 
-This is an early release (1.0). By installing it you agree to the Beta Test Agreement
+This is the Keyglass Beta. By installing it you agree to the Beta Test Agreement
 you received with the link. Please don't share the installer.
