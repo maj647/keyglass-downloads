@@ -16,8 +16,9 @@
   --line: rgba(255,255,255,.12);
   --fg: #e9edf3;
   --muted: #9aa6b6;
-  --accent: #ffb547;        /* VU-meter amber */
-  --accent-ink: #1b1306;
+  --accent: #b9a7ff;        /* light purple, from the app icon */
+  --accent-fade: linear-gradient(120deg, #7f8cff 0%, #c08bff 100%);  /* the app icon's blue-to-violet */
+  --accent-ink: #ffffff;
   --good: #59d39a;
   --display: "Unbounded", "Avenir Next", system-ui, sans-serif;
   --body: "IBM Plex Sans", -apple-system, "Helvetica Neue", sans-serif;
@@ -27,13 +28,13 @@
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
     --bg: #f3f5f8; --surface: rgba(13,17,23,.04); --surface-strong: rgba(13,17,23,.07);
-    --line: rgba(13,17,23,.12); --fg: #111722; --muted: #566273; --accent: #c77700;
+    --line: rgba(13,17,23,.12); --fg: #111722; --muted: #566273; --accent: #7357e6; --accent-fade: linear-gradient(120deg, #5c73fa 0%, #b861f2 100%);
     --accent-ink: #fff; --good: #1d8a57; color-scheme: light;
   }
 }
 :root[data-theme="light"] {
   --bg: #f3f5f8; --surface: rgba(13,17,23,.04); --surface-strong: rgba(13,17,23,.07);
-  --line: rgba(13,17,23,.12); --fg: #111722; --muted: #566273; --accent: #c77700;
+  --line: rgba(13,17,23,.12); --fg: #111722; --muted: #566273; --accent: #7357e6; --accent-fade: linear-gradient(120deg, #5c73fa 0%, #b861f2 100%);
   --accent-ink: #fff; --good: #1d8a57; color-scheme: light;
 }
 * { box-sizing: border-box; }
@@ -66,7 +67,7 @@ nav .links a:hover { color: var(--fg); }
 .btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 12px 22px;
        font: 600 .95rem var(--body); border: 1px solid var(--line); background: var(--surface);
        color: var(--fg); text-decoration: none; cursor: pointer; }
-.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+.btn.primary { background: var(--accent-fade); color: var(--accent-ink); border-color: transparent; }
 .btn:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .btn[aria-disabled="true"], .btn:disabled { opacity: .45; cursor: not-allowed; }
 .req { font-size: .82rem; color: var(--muted); margin-top: 12px; }
@@ -82,7 +83,7 @@ nav .links a:hover { color: var(--fg); }
 .readout .bpm small { font: 600 .8rem var(--body); color: var(--muted); }
 .readout .tune { font: 500 .85rem var(--mono); color: var(--accent); margin-top: 12px; }
 .meter { display: flex; gap: 3px; height: 34px; align-items: flex-end; justify-content: center; margin-top: 18px; }
-.meter i { width: 6px; border-radius: 3px; background: var(--accent); opacity: .85; height: var(--h);
+.meter i { width: 6px; border-radius: 3px; background: var(--accent-fade); opacity: .85; height: var(--h);
            animation: pulse 1.4s ease-in-out infinite; animation-delay: var(--d); }
 @keyframes pulse { 50% { height: calc(var(--h) * .45); } }
 @media (prefers-reduced-motion: reduce) { .meter i { animation: none; } }
@@ -108,7 +109,7 @@ input[type="email"], input[type="text"], input[type="password"] {
 /* plans */
 .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 26px; }
 .plan { border: 1px solid var(--line); border-radius: 20px; padding: 22px; display: grid; gap: 10px; align-content: start; }
-.plan.featured { border-color: var(--accent); }
+.plan.featured { border-color: transparent; background: linear-gradient(var(--bg), var(--bg)) padding-box, var(--accent-fade) border-box; }
 .plan .price { font: 700 1.6rem var(--display); }
 .plan ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: .93rem; }
 .soon { font: 600 .72rem var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
@@ -135,7 +136,7 @@ footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; justify-content: space
 <nav aria-label="Main">
   <div class="wrap">
     <a class="brand" href="#top">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="var(--accent)"/><path d="M6 12v0M8.5 9v6M11 6v12M13.5 8v8M16 10v4M18.5 11.5v1" stroke="var(--accent-ink)" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="logo-fade" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#5c73fa"/><stop offset="1" stop-color="#b861f2"/></linearGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#logo-fade)"/><path d="M6 12v0M8.5 9v6M11 6v12M13.5 8v8M16 10v4M18.5 11.5v1" stroke="var(--accent-ink)" stroke-width="1.8" stroke-linecap="round"/></svg>
       Keyglass
     </a>
     <div class="links">
