@@ -27,3 +27,7 @@ in its window. Download the new `.dmg` and drag it into Applications again.
 
 This is the Keyglass Beta. By installing it you agree to the Beta Test Agreement
 you received with the link. Please don't share the installer.
+
+## Credits
+
+Song keys and tempos for released songs by [GetSongBPM.com](https://getsongbpm.com).
