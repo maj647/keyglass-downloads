@@ -5,6 +5,8 @@ This page only hosts the installers and update info.
 
 ## Download
 
+**New to GitHub? Follow the [step-by-step download guide with pictures](HOW-TO-DOWNLOAD.md).** It takes 2 minutes and you don't need an account.
+
 **[Get the latest version](https://github.com/maj647/keyglass-downloads/releases/latest)**: download the `.dmg` file under *Assets*.
 
 Needs a Mac with Apple Silicon (M1 or newer) and macOS 14.2 or later.
