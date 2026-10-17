@@ -67,7 +67,8 @@ footer{margin-top:auto;padding-top:48px;font-size:12px;color:#6d6488}
     <p class="gift">🎁 Join and get <b>The Session Sheet</b>, a free one-page cheat sheet for faster sessions.</p>
     <button type="submit" id="go">Get in first</button>
     <p class="msg" id="msg" role="status"></p>
-    <p class="legal">Keyglass by Adil Majarali · Toronto, Ontario, Canada · <a id="mail" href="#">contact</a> · <a href="privacy.html">Privacy</a>. We'll ask you to confirm your email. Every email has a one-click unsubscribe link.</p>
+    <iframe name="kitframe" id="kitframe" title="" style="display:none"></iframe>
+    <p class="legal">Keyglass by Adil Majarali · Toronto, Ontario, Canada · <a id="mail" href="#">contact</a> · <a href="privacy.html">Privacy</a>. Trouble? <a href="https://keyglass.kit.com/369c7a65aa">Join here instead</a>. We'll ask you to confirm your email. Every email has a one-click unsubscribe link.</p>
   </form>
 
   <footer>© 2026 Adil Majarali. Keyglass™. Made in Toronto.</footer>
@@ -83,21 +84,15 @@ if (CONTACT_EMAIL) { $("mail").href = "mailto:" + CONTACT_EMAIL; $("mail").textC
 const ref = new URLSearchParams(location.search).get("ref");
 if (ref) { $("src").value = ref.slice(0, 40); $("hi").classList.add("on"); }
 
-$("f").addEventListener("submit", async e => {
-  e.preventDefault();
+// Posts straight into Kit through a hidden frame, so browser cross-site rules can't block it.
+if (KIT_FORM_ID) { $("f").action = `https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`; $("f").target = "kitframe"; }
+$("f").addEventListener("submit", e => {
   const f = e.target, msg = $("msg"), email = f.email_address.value.trim();
-  if (!/^\S+@\S+\.\S+$/.test(email)) { msg.textContent = "Please enter a valid email."; return; }
-  if (!$("ok").checked) { msg.textContent = "Tick the box so we're allowed to email you."; return; }
-  if (!KIT_FORM_ID) { msg.textContent = "The list opens in a few minutes. Please try again shortly!"; return; }
+  if (!/^\S+@\S+\.\S+$/.test(email)) { e.preventDefault(); msg.textContent = "Please enter a valid email."; return; }
+  if (!$("ok").checked) { e.preventDefault(); msg.textContent = "Tick the box so we're allowed to email you."; return; }
+  if (!KIT_FORM_ID) { e.preventDefault(); msg.textContent = "The list opens in a few minutes. Please try again shortly!"; return; }
   $("go").disabled = true; msg.textContent = "Joining…";
-  const url = `https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`;
-  try {
-    const r = await fetch(url, { method: "POST", body: new FormData(f), headers: { Accept: "application/json" } });
-    if (!r.ok) throw new Error(r.status);
-    msg.textContent = "Almost in. Check your inbox and confirm your email to get your gift.";
-    f.reset();
-  } catch { f.action = url; f.submit(); }
-  finally { $("go").disabled = false; }
+  $("kitframe").onload = () => { msg.textContent = "Almost in. Check your inbox (and Promotions) and confirm your email to get your gift."; $("go").disabled = false; f.reset(); };
 });
 </script>
 </body>
