@@ -53,7 +53,7 @@ footer{margin-top:auto;padding-top:48px;font-size:12px;color:#6d6488}
 <div class="glow"></div>
 <main>
   <div class="lock"><img src="assets/icon.png" alt=""><img src="assets/wordmark.png" alt="Keyglass"></div>
-  <span class="pill" id="hi">IMSTA FESTA Toronto · you found us</span>
+  <span class="pill" id="hi">You found us</span>
   <h1>Give the time back <span>to the music.</span></h1>
   <p class="sub">Something new for producers is almost here. Less hunting. More making.</p>
   <div class="wave" id="wave" aria-hidden="true"></div>
@@ -81,7 +81,7 @@ const $ = id => document.getElementById(id);
 for (let i = 0; i < 18; i++) { const b = document.createElement("i"); b.style.animationDelay = (-i * .13) + "s"; b.style.animationDuration = (.8 + (i % 5) * .15) + "s"; $("wave").appendChild(b); }
 if (CONTACT_EMAIL) { $("mail").href = "mailto:" + CONTACT_EMAIL; $("mail").textContent = CONTACT_EMAIL; }
 const ref = new URLSearchParams(location.search).get("ref");
-if (ref) { $("src").value = ref.slice(0, 40); if (ref.toLowerCase() === "imsta") $("hi").classList.add("on"); }
+if (ref) { $("src").value = ref.slice(0, 40); $("hi").classList.add("on"); }
 
 $("f").addEventListener("submit", async e => {
   e.preventDefault();
