@@ -94,7 +94,7 @@ $("f").addEventListener("submit", async e => {
   try {
     const r = await fetch(url, { method: "POST", body: new FormData(f), headers: { Accept: "application/json" } });
     if (!r.ok) throw new Error(r.status);
-    msg.textContent = "Almost in. Check your inbox and confirm your email to get your gift.";
+    msg.innerHTML = 'You\'re on the list. <a href="gift/keyglass-session-sheet.pdf" style="color:#FFB547">Download The Session Sheet</a>. Check your inbox (and Spam) for a confirm email too.';
     f.reset();
   } catch { f.action = url; f.submit(); }
   finally { $("go").disabled = false; }
